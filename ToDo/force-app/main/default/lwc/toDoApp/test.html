@@ -1,0 +1,70 @@
+<template>
+    <lightning-card title="ToDo App" style="width: 100%;">
+
+        <!-- Refresh Buttton -->
+        <lightning-button-icon
+            slot="actions"
+            icon-name="utility:sync"
+            title="Sync"
+            alternative-text="Sync"
+        >
+        </lightning-button-icon>
+
+    
+
+        <lightning-layout>
+            <lightning-layout-item>
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={todoTasks} for:item="todoTask">
+                        <li class="slds-item" key={todoTask.id}>
+                            <lightning-layout vertical-align="center" horizontal-align="spread">
+                                <lightning-layout-item padding="horizontal-small">
+                                    {todoTask.name}
+                                </lightning-layout-item>
+                                <!--Delete button to remove the task from the list -->
+                                <lightning-layout-item 
+                                    icon-name="utility:delete"
+                                    alternative-text="Delete"
+                                    onclick={deleteTaskFromList}
+                                    title="Delete"
+                                    name={todoTask.Id}>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </li>
+                    </template>
+                </ul>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <!-- -->
+
+        <p slot="footer">
+
+            <!-- Text area to add new task  -->
+
+            <lightning-layout>
+                <lightning-layout-item>
+                    <lightning-input
+                        type="text"
+                        placeholder="What do you want to do 🙌😊"
+                        label="NewTask"
+                        value={NewTask}
+                        variant="label-hidden"
+                        onchange={updayeNewTask}
+                        required>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <!-- Add Button -->
+                <lightning-layout-item>
+                    <lightning-button 
+                        variant="brand"
+                        label="ADD Your Task ✔"
+                        onclick={addTaskToList}>
+                    </lightning-button>
+                </lightning-layout-item>
+
+            </lightning-layout>
+        </p>
+    </lightning-card>
+</template>
